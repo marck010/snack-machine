@@ -1,5 +1,6 @@
 const RepositoryCard = require('../repositories/repository-card');
 
+const config = require("../../config")
 
 module.exports = class ServiceCard {
 
@@ -14,7 +15,8 @@ module.exports = class ServiceCard {
 
             if (date <= moment().startOf('date')) {
 
-                card.balance = 10;
+                card.balance = config.defaultBalance;
+                
                 card.date = moment().startOf('date');
 
                 return this.repositoryCard.updateBalance(card).then(function () {
