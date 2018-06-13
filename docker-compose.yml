@@ -7,10 +7,3 @@ services:
        - ./Service/:/opt/snack-machine
       ports:
         - "8000:8000"
-   snack-machine-database:
-      build: Database/
-      container_name: snack-machine-database   
-      volumes:
-       - ./Database/data:/data/db
-      ports:
-        - "27019:27017"
