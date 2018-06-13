@@ -1,8 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var routerSnackMachine = require('./src/routes/snack-machine');
-var DatabaseConnect = require("./database");
 var logger = require('morgan');
+
+var routerSnackMachine = require('./src/routes/routes-snack-machine');
+var DatabaseConnect = require("./database");
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -11,15 +13,14 @@ app.use(logger('dev'));
 
 DatabaseConnect.connect();
 
-app.use(function (req, res, next) {
-    
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, ApiKeyPersona, SessionKey");
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-
-    next();
-})
 
 app.use('/', routerSnackMachine);
+
+app.use((error, req, res, next) => {
+    if (error) {
+        res.json(error.message);
+    }
+});
+
 
 module.exports = app;

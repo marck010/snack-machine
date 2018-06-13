@@ -1,26 +1,28 @@
-const RepositoryCard = require('../repositories/repository-card');
-
 const config = require("../../config")
+const moment = require('moment');
 
 module.exports = class ServiceCard {
 
-    constructor() {
-        this.repositoryCard = new RepositoryCard()
+    constructor(repositoryCard) {
+        this.repositoryCard = repositoryCard;
     }
-
 
     insertCard(card_number) {
 
-        this.repositoryCard.getCard(card_number).then(function (card) {
+        return this.getCard(card_number).then((card) => {
 
-            if (date <= moment().startOf('date')) {
+            if (!card) {
+                throw new Error("Card not found.")
+            }
+
+            if (moment(card.lastDateAccess).isBefore(moment().startOf('date'))) {
 
                 card.balance = config.defaultBalance;
-                
-                card.date = moment().startOf('date');
 
-                return this.repositoryCard.updateBalance(card).then(function () {
-                    
+                card.lastDateAccess = moment().startOf('date').toISOString();
+
+                return this.updateBalance(card).then((nResult) => {
+
                     return card.balance;
 
                 });
@@ -28,8 +30,28 @@ module.exports = class ServiceCard {
             }
 
             return card.balance
+
         })
 
     }
 
+    getCard(card_number) {
+
+        return this.repositoryCard.getCard(card_number);
+
+    }
+
+    getBalance(card) {
+        if (moment(card.lastDateAccess).isBefore(moment().startOf('date'))) {
+            return 0;
+        }
+        else {
+            return card.balance;
+        }
+    }
+
+    updateBalance(card) {
+        return this.repositoryCard.updateBalance(card);
+    }
 }
+
