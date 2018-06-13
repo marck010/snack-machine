@@ -13,7 +13,6 @@ module.exports = class DatabaseConnect {
         mongoose.connect(url, function (error) {
             
             if (error) {
-                next(error)
                 console.log(error);
                 return;
             }

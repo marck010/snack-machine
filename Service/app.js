@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var routeSnackMachine = require('./src/routes/snack-machine');
+var routerSnackMachine = require('./src/routes/snack-machine');
 var DatabaseConnect = require("./database");
 var logger = require('morgan');
 var app = express();
@@ -20,6 +20,6 @@ app.use(function (req, res, next) {
     next();
 })
 
-app.use('/', routeSnackMachine);
+app.use('/', routerSnackMachine);
 
 module.exports = app;

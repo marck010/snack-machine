@@ -1,17 +1,10 @@
 var express = require('express');
-var controller = require('../controllers/controller')
-var route = express.Router();
+var Controller = require('../controllers/controller');
+var router = express.Router();
 
-module.exports = class MachineSnackRouter{
+let controller = new Controller();
 
-    constructor(){
-        this.serviceBalance = new ServiceBalance();
-        this.serviceProduct = new ServiceProduct();
+router.post('/insertCard', controller.)
+router.post('/buyProduct', controller.buyProduct)
 
-        route.post('/insertCard', this.serviceBalance.insertCard)
-        route.post('/buyProduct', this.serviceProduct.buyProduct)
-
-    }
-
-}
-
+module.exports = router;

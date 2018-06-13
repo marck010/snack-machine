@@ -9,9 +9,9 @@ module.exports = class ServiceCard {
     }
 
 
-    insertCard(card) {
+    insertCard(card_number) {
 
-        this.repositoryCard.getCard(card._id).then(function (card) {
+        this.repositoryCard.getCard(card_number).then(function (card) {
 
             if (date <= moment().startOf('date')) {
 

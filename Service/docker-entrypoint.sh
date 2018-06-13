@@ -1,6 +1,6 @@
 #!/bin/bash
-export SERVER_DB=127.0.0.1:27017/snackMachine
-export USER_DB=user_database
+export SERVER_DB=ds257470.mlab.com:57470/snack-machine
+export USER_DB=user_snack_machine
 export PASS_DB=g6WzsDeDsb2trs56*
 export DEFAULT_BALANCE=10
 

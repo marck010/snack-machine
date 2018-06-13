@@ -3,9 +3,9 @@ const ModelCard = require('../models/card-model');
 module.exports = class RepositoryCard {
 
     
-    getCard(card_id) {
+    getCard(card_number) {
 
-        return ModelCard.findOne({ _id: card_id });
+        return ModelCard.findOne({ number: card_number });
 
     }
 

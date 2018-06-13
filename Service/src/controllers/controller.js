@@ -11,7 +11,7 @@ module.exports = class ControllerMachine {
     insertCard(req, res, next) {
         try {
 
-            this.serviceCard.insertCard(req.card_id).then(function (balance) {
+            this.serviceCard.insertCard(req.body.card_number).then(function (balance) {
     
                 res.json(balance);
 
@@ -32,7 +32,7 @@ module.exports = class ControllerMachine {
 
         try {
 
-            this.serviceProduct.buyProduct(req.product).then(function (docs) {    
+            this.serviceProduct.buyProduct(req.body.product).then(function (docs) {    
           
             }).catch(function (error) {
           
