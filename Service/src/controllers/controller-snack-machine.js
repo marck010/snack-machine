@@ -29,7 +29,7 @@ class ControllerMachine {
 
         try {
 
-            serviceProduct.buyProduct(req.body.product_id, req.body.card_id).then((result) => {
+            serviceProduct.buyProduct(req.body.product_id, req.body.card_number).then((result) => {
 
                 res.json("Purchase completed successfully.");
 

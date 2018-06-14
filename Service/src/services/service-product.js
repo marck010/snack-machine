@@ -6,12 +6,12 @@ module.exports = class ServiceProduct {
         this.serviceCard = serviceCard;
     }
 
-    buyProduct(product_id, card_id) {
+    buyProduct(product_id, card_number) {
 
 
         return this.repositoryProduct.getProduct(product_id).then((product) => {
 
-            return this.serviceCard.getCard(card_id).then((card) => {
+            return this.serviceCard.getCard(card_number).then((card) => {
 
                 if (!card) {
                     throw new Error("Card not found.")
@@ -24,12 +24,13 @@ module.exports = class ServiceProduct {
                 let balance = this.serviceCard.getBalance(card);
 
                 if (balance < product.price) {
-                    throw Error(`Insufficient balance to make that purchase. Your balance is ${balance}`)
+                    throw new Error(`Insufficient balance to make that purchase. Your balance is ${balance}`)
                 }
 
                 card.balance -= product.price;
 
                 return this.serviceCard.updateBalance(card);
+                
 
             });
         })
