@@ -8,7 +8,7 @@ Service to control a snack machine.
   * npm
   
   Instal dependencies
-    * To install dependencis execute script.
+    * To install dependencies in linux `Ubuntu` execute script.
       >  ./instal-dependencies.sh
   
 - Service    
@@ -30,4 +30,13 @@ Service to control a snack machine.
         body:	{
                 "card_number": string
               }
-    
+     
+     
+   
+- Database
+ 
+ * Pre-registrated data  
+
+       product_id = "5b220e6b2b53778e5a868587",
+       card_number = "001"
+ 
